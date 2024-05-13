@@ -15,10 +15,23 @@ print_git_version() {
     fi
 }
 
+# Function to print Docker version installed
+print_docker_version() {
+    if [[ -f /tmp/docker_installed_version.txt ]]; then
+        local installed_version
+        installed_version=$(cat /tmp/docker_installed_version.txt)
+        printf "Docker version %s is installed.\n" "$installed_version"
+    else
+        printf "Unable to determine the installed Docker version.\n"
+    fi
+}
+
 # Main function
 main() {
     ./bin/install_git.sh
     print_git_version
+    ./bin/install_docker.sh
+    print_docker_version
 }
 
 main
