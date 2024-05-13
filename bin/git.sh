@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-# Install Git
+# Function to install Git
 install_git() {
     if ! command -v git &>/dev/null; then
         sudo apt-get update
@@ -15,8 +15,8 @@ install_git() {
     fi
 }
 
-# Check the installed version of Git
-check_git_version() {
+# Function to check and save the Git version
+check_and_save_git_version() {
     local git_version
     git_version=$(git --version | awk '{print $3}')
     printf "Installed Git version: %s\n" "$git_version"
@@ -26,7 +26,7 @@ check_git_version() {
 # Main function to control the script flow
 main() {
     install_git
-    check_git_version
+    check_and_save_git_version
 }
 
 main
