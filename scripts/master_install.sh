@@ -55,6 +55,9 @@ main() {
     # Create Maven toolchain configuration
     ./bin/create_maven_toolchain.sh
 
+    # Generate SSH keys
+    ./bin/generate_ssh_keys.sh
+
     echo "All installations and configurations completed successfully."
 }
 
