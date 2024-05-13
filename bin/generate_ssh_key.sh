@@ -38,7 +38,7 @@ echo "Your public SSH key is:"
 cat "${key_path}.pub"
 
 # Optional: Saving the public key to the project root as publickey.txt
-project_root="/path/to/your/project/root"  # Modify this path to your actual project root
+project_root="/opt/init-dev-tools"  # Modify this path to your actual project root
 cp "${key_path}.pub" "${project_root}/publickey.txt"
 echo "Public key also saved to ${project_root}/publickey.txt."
 
