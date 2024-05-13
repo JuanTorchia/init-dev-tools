@@ -1,27 +1,25 @@
 # Init Dev Tools
 
-InitDevTools es una colección de scripts diseñados para facilitar la configuración inicial de entornos de desarrollo en múltiples sistemas operativos. Este proyecto sigue principios de diseño como SOLID para garantizar scripts mantenibles y extensibles.
+InitDevTools is a collection of scripts designed to facilitate the initial setup of development environments on multiple operating systems. This project follows design principles like SOLID to ensure maintainable and extensible scripts.
 
-## Estructura de Directorios
+[README: español](https://github.com/jtorchia/Developer/Juanchi/init-dev-tools/READMEes.md) 
 
-- **/bin/**: Contiene scripts ejecutables autónomos para tareas como instalación de software y configuración de servicios.
-- **/config/**: Almacena archivos de configuración, separando la configuración del código para mayor claridad.
-- **/lib/**: Incluye bibliotecas o utilidades comunes que ayudan a evitar la duplicación y facilitan actualizaciones.
-- **/logs/**: Directorio para archivos de registro, útil para seguimiento de operaciones y depuración de errores.
-- **/scripts/**: Contiene scripts de alto nivel que coordinan múltiples tareas de instalación y configuración.
 
-## Principios de Diseño Aplicados
+## Directory Structure
 
-- **Single Responsibility**: Cada script en `/bin/` se enfoca en una sola tarea. Por ejemplo, `install_git.sh` solo instala Git.
-- **Open/Closed**: Los scripts en `/lib/` se pueden extender sin necesidad de modificar el código existente.
-- **Dependency Inversion**: Los scripts en `/scripts/` dependen de abstracciones y no de implementaciones concretas, facilitando pruebas y reutilización.
-- **Separation of Concerns**: La estructura separa configuración, utilidades y lógica de ejecución para permitir modificaciones independientes.
+- **/bin/**: Contains standalone executable scripts for tasks like software installation and service configuration.
+- **/config/**: Stores configuration files, separating configuration from code for clarity.
+- **/lib/**: Includes common libraries or utilities that help avoid duplication and facilitate updates.
+- **/logs/**: Directory for log files, useful for tracking operations and debugging errors.
+- **/scripts/**: Contains high-level scripts that coordinate multiple installation and configuration tasks.
 
-## Instalación y Uso
+## Applied Design Principles
 
-Clona el repositorio para comenzar a utilizar InitDevTools:
+- **Single Responsibility**: Each script in `/bin/` focuses on a single task. For example, `install_git.sh` only installs Git.
+- **Open/Closed**: Scripts in `/lib/` can be extended without modifying existing code.
+- **Dependency Inversion**: Scripts in `/scripts/` depend on abstractions rather than concrete implementations, facilitating testing and reusability.
+- **Separation of Concerns**: The structure separates configuration, utilities, and execution logic to allow independent modifications.
 
-```bash
-git clone https://github.com/usuario/InitDevTools.git
-cd InitDevTools
-./scripts/master_install.sh
+## Installation and Usage
+
+Clone the repository to start using InitDevTools:
