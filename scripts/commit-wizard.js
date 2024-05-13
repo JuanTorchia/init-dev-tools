@@ -2,6 +2,10 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import { execSync } from 'child_process';
 
+function pause(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
 async function checkAndFixPermissions() {
     console.log(chalk.blue('Checking for executable permissions in scripts and bin directories...'));
     const directories = ['scripts', 'bin'];
@@ -19,6 +23,8 @@ async function checkAndFixPermissions() {
             }
         });
     });
+
+    await pause(5000);
 }
 
 async function selectFilesToAdd() {
