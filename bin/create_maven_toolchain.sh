@@ -12,14 +12,20 @@ toolchains_file="$HOME/.m2/toolchains.xml"
 echo "<toolchains>" > "$toolchains_file"
 
 # Source SDKMAN in all cases to ensure it's properly initialized
-source "$HOME/.sdkman/bin/sdkman-init.sh"
+if [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+else
+    echo "SDKMAN is not installed correctly or the init script is missing."
+    exit 1
+fi
 
-# Adding each Java version to the toolchains.xml
-java_versions=("11.0.20-amzn" "17.0.8-amzn" "21.0.1-amzn" "8.0.372-amzn")
+# Including all Java versions available in SDKMAN
+java_versions=("11.0.23-amzn" "17.0.11-amzn" "21.0.3-amzn" "8.0.412-amzn")
+
 for version in "${java_versions[@]}"; do
     jdk_home=$(sdk home java "$version")
-    java_version_major=$(echo "$version" | cut -d. -f1 | cut -d- -f1)
-    
+    java_version_major=$(echo "$version" | grep -oP '^\d+')
+
     echo "Adding Java $version to toolchains..."
     cat <<EOF >> "$toolchains_file"
       <toolchain>
