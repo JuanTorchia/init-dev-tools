@@ -1,0 +1,27 @@
+{
+  "name": "init-dev-tools",
+  "version": "1.0.0",
+  "description": "InitDevTools es una colección de scripts diseñados para facilitar la configuración inicial de entornos de desarrollo en múltiples sistemas operativos. Este proyecto sigue principios de diseño como SOLID para garantizar scripts mantenibles y extensibles.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "lint": "eslint '**/*.js'",
+    "pretty": "prettier --write '**/*.js'",
+    "commit": "node scripts/commitScript.js",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.2.0",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.21"
+  }
+}
