@@ -2,7 +2,7 @@
 
 InitDevTools is a collection of scripts designed to facilitate the initial setup of development environments on multiple operating systems. This project follows design principles like SOLID to ensure maintainable and extensible scripts.
 
-[README: español](https://github.com/jtorchia/Developer/Juanchi/init-dev-tools/READMEes.md) 
+[README: español](https://github.com/JuanTorchia/init-dev-tools/blob/main/READMEes.md) 
 
 
 ## Directory Structure
