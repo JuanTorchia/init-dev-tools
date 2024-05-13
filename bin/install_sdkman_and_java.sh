@@ -4,9 +4,9 @@ set -eo pipefail
 
 echo "Checking required tools..."
 if ! command -v unzip >/dev/null; then
-    echo "Unzip not found. Installing unzip..."
+    echo "Unzip/zip not found. Installing unzip/zip..."
     sudo apt-get update
-    sudo apt-get install -y unzip
+    sudo apt-get install -y unzip zip
 fi
 
 echo "Installing SDKMAN..."
