@@ -31,7 +31,7 @@ for version in "${java_versions[@]}"; do
         echo "Java $version is already installed."
     else
         echo "Installing Java $version..."
-        sdk install java "$version"
+        sdk install java $version
     fi
 done
 
