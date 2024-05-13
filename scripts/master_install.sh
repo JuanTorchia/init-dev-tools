@@ -26,12 +26,36 @@ print_docker_version() {
     fi
 }
 
-# Main function
-main() {
-    ./bin/install_git.sh
-    print_git_version
-    ./bin/install_docker.sh
-    print_docker_version
+# Function to print Java SDK versions installed
+print_java_versions() {
+    if [[ -f /tmp/sdkman_java_versions_installed.txt ]]; then
+        printf "Installed Java versions:\n"
+        cat /tmp/sdkman_java_versions_installed.txt
+    else
+        printf "Unable to determine the installed Java versions.\n"
+    fi
 }
 
-main
+# Main function to coordinate the installation
+main() {
+    echo "Starting installation of development tools..."
+
+    # Git installation
+    ./bin/install_git.sh
+    print_git_version
+
+    # Docker installation
+    ./bin/install_docker.sh
+    print_docker_version
+
+    # SDKMAN, Java, and Maven installation
+    ./bin/install_sdkman_and_java.sh
+    print_java_versions
+
+    # Create Maven toolchain configuration
+    ./bin/create_maven_toolchain.sh
+
+    echo "All installations and configurations completed successfully."
+}
+
+main "$@"
