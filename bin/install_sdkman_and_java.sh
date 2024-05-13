@@ -27,14 +27,17 @@ fi
 # Source SDKMAN in all cases to ensure it's properly initialized
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# Installing specific Java versions using SDKMAN
+# Checking and installing Java versions using SDKMAN
 java_versions=("11.0.23-amzn" "17.0.11-amzn" "21.0.3-amzn" "8.0.412-amzn")
 for version in "${java_versions[@]}"; do
-    if sdk list java | grep -q "$version"; then
+    echo "Checking if Java $version is installed..."
+    if sdk list java | grep -q "${version}"; then
         echo "Java $version is already installed."
     else
         echo "Installing Java $version..."
         sdk install java $version
+        # Skip setting it as default
+        echo "n" | sdk default java $version
     fi
 done
 

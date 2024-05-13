@@ -11,6 +11,9 @@ toolchains_file="$HOME/.m2/toolchains.xml"
 # Start the toolchains.xml content
 echo "<toolchains>" > "$toolchains_file"
 
+# Source SDKMAN in all cases to ensure it's properly initialized
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 # Adding each Java version to the toolchains.xml
 java_versions=("11.0.20-amzn" "17.0.8-amzn" "21.0.1-amzn" "8.0.372-amzn")
 for version in "${java_versions[@]}"; do
