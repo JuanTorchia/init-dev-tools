@@ -24,6 +24,9 @@ else
     source "$HOME/.sdkman/bin/sdkman-init.sh"
 fi
 
+# Source SDKMAN in all cases to ensure it's properly initialized
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 # Installing specific Java versions using SDKMAN
 java_versions=("11.0.23-amzn" "17.0.11-amzn" "21.0.3-amzn" "8.0.412-amzn")
 for version in "${java_versions[@]}"; do
