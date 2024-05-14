@@ -101,4 +101,3 @@ log_message "Example script completed successfully." "INFO"
 3. **Consistent Formatting**: Follow a consistent format for log messages to maintain readability.
 4. **Directory Structure**: Ensure logs are stored in a dedicated directory under `/logs/`.
 
-By following these guidelines, you can ensure that your scripts are maintainable, extensible, and easy to debug.
