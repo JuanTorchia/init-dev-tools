@@ -1,0 +1,23 @@
+{
+    "semi": false,
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "plugins": ["prettier-plugin-sh"],
+    "overrides": [
+        {
+            "files": "*.sh",
+            "options": {
+                "keepComments": true,
+                "binaryNextLine": true,
+                "switchCaseIndent": false,
+                "spaceRedirects": false,
+                "keepPadding": false,
+                "minify": false,
+                "functionNextLine": false,
+                "experimentalWasm": false
+            }
+        }
+    ]
+}

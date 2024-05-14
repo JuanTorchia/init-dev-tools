@@ -4,29 +4,38 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+# Incluir la biblioteca de logging
+source ../lib/logging.sh
+
+# Inicializar logs específicos para este script
+init_logs "../logs/git"
+
+log_message "Starting Git installation..." "INFO"
+
 # Function to install Git
 install_git() {
-    if ! command -v git &>/dev/null; then
-        sudo apt-get update
-        sudo apt-get install -y git
-        printf "Git installed successfully.\n"
-    else
-        printf "Git is already installed.\n"
-    fi
+  if ! command -v git &>/dev/null; then
+    log_message "Git not found. Installing Git..." "INFO"
+    sudo apt-get update
+    sudo apt-get install -y git
+    log_message "Git installed successfully." "INFO"
+  else
+    log_message "Git is already installed." "INFO"
+  fi
 }
 
 # Function to check and save the Git version
 check_and_save_git_version() {
-    local git_version
-    git_version=$(git --version | awk '{print $3}')
-    printf "Installed Git version: %s\n" "$git_version"
-    echo "$git_version" > /tmp/git_installed_version.txt
+  local git_version
+  git_version=$(git --version | awk '{print $3}')
+  log_message "Installed Git version: $git_version" "INFO"
+  echo "$git_version" >/tmp/git_installed_version.txt
 }
 
 # Main function to control the script flow
 main() {
-    install_git
-    check_and_save_git_version
+  install_git
+  check_and_save_git_version
 }
 
 main
