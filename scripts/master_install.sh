@@ -4,6 +4,15 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+# Función para instalar curl si no está presente
+install_curl() {
+  if ! command -v curl &> /dev/null; then
+    echo "curl not found. Installing curl..."
+    sudo apt-get update
+    sudo apt-get install -y curl
+  fi
+}
+
 # Verificar si Node.js está instalado, si no, instalarlo
 if ! command -v node &>/dev/null; then
   echo "Node.js not found. Installing Node.js..."
