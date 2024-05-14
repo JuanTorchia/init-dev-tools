@@ -14,11 +14,17 @@ install_curl() {
 }
 
 # Verificar si Node.js está instalado, si no, instalarlo
-if ! command -v node &>/dev/null; then
-  echo "Node.js not found. Installing Node.js..."
-  curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-  sudo apt-get install -y nodejs
-fi
+install_nodejs() {
+  if ! command -v node &> /dev/null; then
+    echo "Node.js not found. Installing Node.js..."
+    install_curl
+    curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+  fi
+}
+
+# Ejecutar la instalación de Node.js
+install_nodejs
 
 # Obtener la ruta absoluta del directorio del script
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
