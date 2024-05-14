@@ -3,11 +3,14 @@
 # Ensuring the script exits if any commands fail
 set -eo pipefail
 
+# Obtener la ruta absoluta del directorio del script
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
 # Incluir la biblioteca de logging
-source ../lib/logging.sh
+source "$SCRIPT_DIR/../lib/logging.sh"
 
 # Inicializar logs específicos para este script
-init_logs "../logs/ssh_key"
+init_logs "$SCRIPT_DIR/../logs/ssh_key"
 
 log_message "Starting SSH key generation..." "INFO"
 

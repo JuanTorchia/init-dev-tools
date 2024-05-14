@@ -4,11 +4,14 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+# Obtener la ruta absoluta del directorio del script
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
 # Incluir la biblioteca de logging
-source ../lib/logging.sh
+source "$SCRIPT_DIR/../lib/logging.sh"
 
 # Inicializar logs específicos para este script
-init_logs "../logs/git"
+init_logs "$SCRIPT_DIR/../logs/git"
 
 log_message "Starting Git installation..." "INFO"
 

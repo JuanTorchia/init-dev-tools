@@ -2,11 +2,14 @@
 
 set -eo pipefail
 
+# Obtener la ruta absoluta del directorio del script
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
 # Incluir la biblioteca de logging
-source ../lib/logging.sh
+source "$SCRIPT_DIR/../lib/logging.sh"
 
 # Inicializar logs específicos para este script
-init_logs "../logs/sdkman_java_maven"
+init_logs "$SCRIPT_DIR/../logs/sdkman_java_maven"
 
 log_message "Checking required tools..." "INFO"
 
@@ -34,11 +37,17 @@ fi
 # Source SDKMAN in all cases to ensure it's properly initialized
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# Function to check if a specific Java version is installed
+is_java_version_installed() {
+  local version="$1"
+  sdk list java | grep -E "^\\s*${version}\\s+" >/dev/null
+}
+
 # Checking and installing Java versions using SDKMAN
 java_versions=("11.0.23-amzn" "17.0.11-amzn" "21.0.3-amzn" "8.0.412-amzn")
 for version in "${java_versions[@]}"; do
   log_message "Checking if Java $version is installed..." "INFO"
-  if sdk list java | grep -q "${version}"; then
+  if is_java_version_installed "$version"; then
     log_message "Java $version is already installed." "INFO"
   else
     log_message "Installing Java $version..." "INFO"

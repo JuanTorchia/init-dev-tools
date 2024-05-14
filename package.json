@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "InitDevTools es una colección de scripts diseñados para facilitar la configuración inicial de entornos de desarrollo en múltiples sistemas operativos. Este proyecto sigue principios de diseño como SOLID para garantizar scripts mantenibles y extensibles.",
   "main": "index.js",
+  "type": "module",
   "directories": {
     "lib": "lib"
   },

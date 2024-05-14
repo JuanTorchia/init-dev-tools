@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 
-const inquirer = require('inquirer');
-const { exec } = require('child_process');
-const path = require('path');
+import inquirer from 'inquirer';
+import { spawn } from 'child_process';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Obtener la ruta absoluta del directorio del script
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const scripts = {
   'Install Git': path.join(__dirname, '../bin/install_git.sh'),
@@ -26,16 +32,18 @@ inquirer.prompt(questions).then(answers => {
   answers.scripts.forEach(scriptName => {
     const scriptPath = scripts[scriptName];
     console.log(`Executing ${scriptName}...`);
-    exec(`bash ${scriptPath}`, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error executing ${scriptName}: ${error.message}`);
-        return;
+    const child = spawn('bash', [scriptPath], { stdio: 'inherit' });
+
+    child.on('error', (error) => {
+      console.error(`Error executing ${scriptName}: ${error.message}`);
+    });
+
+    child.on('exit', (code) => {
+      if (code !== 0) {
+        console.error(`Error output from ${scriptName}: exited with code ${code}`);
+      } else {
+        console.log(`Output from ${scriptName}: completed successfully.`);
       }
-      if (stderr) {
-        console.error(`Error output from ${scriptName}: ${stderr}`);
-        return;
-      }
-      console.log(`Output from ${scriptName}: ${stdout}`);
     });
   });
 });

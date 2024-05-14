@@ -2,11 +2,14 @@
 
 set -eo pipefail
 
+# Obtener la ruta absoluta del directorio del script
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
 # Incluir la biblioteca de logging
-source ../lib/logging.sh
+source "$SCRIPT_DIR/../lib/logging.sh"
 
 # Inicializar logs específicos para este script
-init_logs "../logs/docker"
+init_logs "$SCRIPT_DIR/../logs/docker"
 
 # Function to add Docker's official GPG key and repository only if Docker is not installed
 setup_docker_repository() {

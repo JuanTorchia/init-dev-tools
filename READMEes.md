@@ -22,7 +22,7 @@ InitDevTools es una colección de scripts diseñados para facilitar la configura
 Clona el repositorio para comenzar a utilizar InitDevTools:
 
 ```bash
-git clone https://github.com/usuario/InitDevTools.git
+git clone https://github.com/JuanTorchia/init-dev-tools.git
 cd InitDevTools
 ./scripts/master_install.sh
 
