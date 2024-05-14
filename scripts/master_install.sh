@@ -18,7 +18,7 @@ install_nodejs() {
   if ! command -v node &> /dev/null; then
     echo "Node.js not found. Installing Node.js..."
     install_curl
-    curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
     sudo apt-get install -y nodejs
   fi
 }
@@ -36,6 +36,16 @@ source "$SCRIPT_DIR/../lib/logging.sh"
 init_logs "$SCRIPT_DIR/../logs/master"
 
 log_message "Starting installation script using Node.js..." "INFO"
+
+# Verificar si npm está instalado, si no, instalarlo
+if ! command -v npm &> /dev/null; then
+  echo "npm not found. Please check your Node.js installation."
+  exit 1
+fi
+
+# Instalar dependencias de npm
+log_message "Installing npm dependencies..." "INFO"
+npm install --prefix "$SCRIPT_DIR/.." || log_message "Failed to install npm dependencies." "ERROR"
 
 # Ejecutar el script de Node.js para presentar el menú interactivo
 node "$SCRIPT_DIR/master.js" || log_message "Failed to execute the Node.js script." "ERROR"
