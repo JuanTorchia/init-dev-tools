@@ -4,6 +4,13 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+# Verificar si Node.js está instalado, si no, instalarlo
+if ! command -v node &>/dev/null; then
+  echo "Node.js not found. Installing Node.js..."
+  curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+fi
+
 # Obtener la ruta absoluta del directorio del script
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
