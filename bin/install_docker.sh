@@ -35,7 +35,8 @@ install_docker() {
     sudo apt-get update
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     log_message "Verifying Docker installation..." "INFO"
-    sudo docker run hello-world || log_message "Docker installation verification failed." "ERROR"
+    sudo usermod -aG docker $USER
+    docker run hello-world || log_message "Docker installation verification failed." "ERROR"
   else
     log_message "Docker is already installed and operational." "INFO"
   fi
