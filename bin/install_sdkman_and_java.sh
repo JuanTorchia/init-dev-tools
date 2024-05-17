@@ -63,5 +63,5 @@ if sdk list maven | grep -q "Not installed"; then
 else
   log_message "Maven is already installed." "INFO"
 fi
-
+log_message "Java versions to be installed: ${java_versions[*]}" "INFO"
 log_message "SDKMAN, Java, and Maven installation completed." "INFO"
